@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountData.cs" />
+    <Compile Include="GroupFieldData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest2.cs" />
     <Compile Include="UnitTest3.cs" />
