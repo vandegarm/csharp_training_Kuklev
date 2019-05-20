@@ -21,7 +21,7 @@ namespace addressbook_web_tests
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/addressbook/";
+            baseURL = "http://localhost/addressbook/addressbook/group.php";
             verificationErrors = new StringBuilder();
         }
 
@@ -48,20 +48,16 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-            driver.FindElement(By.Id("content")).Click();
             driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.Name("new")).Click();
             driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).SendKeys("Lection 1.1");
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).SendKeys("Lection 1.1");
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).SendKeys("Lection 1.1");
+            driver.FindElement(By.Name("group_name")).Clear();
+            driver.FindElement(By.Name("group_name")).SendKeys("Lection 1.1/1");
             driver.FindElement(By.Name("submit")).Click();
-            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Groups'])[1]/following::div[1]")).Click();
-            driver.FindElement(By.LinkText("group page")).Click();
+            driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
+            driver.FindElement(By.Name("user")).Clear();
+            driver.FindElement(By.Name("user")).SendKeys("admin");
         }
         private bool IsElementPresent(By by)
         {
