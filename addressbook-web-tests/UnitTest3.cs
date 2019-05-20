@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class GroupCreationTest
+    public class GroupCreationTest1
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -42,70 +42,44 @@ namespace addressbook_web_tests
         [Test]
         public void GroupCreation()
         {
-            OpenHomePage();
-            Login("admin", "secret");
-            GoToGroupPage();
-            NewGroupCreation();
-            EnterFieldValues("NewTest_1", "NewTest_11", "NewTest_111");
-            SubmitGroupCreation();
-            ReturnToGroupPage();
-            Logout();
+            // открытие страницы addressbook
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
 
-        }
+            //логин пароль
+            driver.FindElement(By.Name("user")).Click();
+            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("pass")).Click();
+            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
 
-        private void Logout()
-        {
+            // переход к созданию новой группы
+            driver.FindElement(By.LinkText("groups")).Click();
+
+            // создание новой группы
+            driver.FindElement(By.Name("new")).Click();
+
+            // заполнение полей
+            driver.FindElement(By.Name("group_name")).Click();
+            driver.FindElement(By.Name("group_name")).Clear();
+            driver.FindElement(By.Name("group_name")).SendKeys("test");
+            driver.FindElement(By.Name("group_header")).Click();
+            driver.FindElement(By.Name("group_header")).Clear();
+            driver.FindElement(By.Name("group_header")).SendKeys("test1");
+            driver.FindElement(By.Name("group_footer")).Click();
+            driver.FindElement(By.Name("group_footer")).Clear();
+            driver.FindElement(By.Name("group_footer")).SendKeys("test2");
+
+            // создание группы
+            driver.FindElement(By.Name("submit")).Click();
+
+            // возврат к группам
+            driver.FindElement(By.LinkText("groups")).Click();
+
+            // выход
             driver.FindElement(By.LinkText("Logout")).Click();
         }
 
-        private void ReturnToGroupPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
-
-        private void SubmitGroupCreation()
-        {
-            driver.FindElement(By.Name("submit")).Click();
-        }
-
-        private void EnterFieldValues(string name, string header, string footer)
-        {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
-        }
-
-        private void NewGroupCreation()
-        {
-            driver.FindElement(By.Name("new")).Click();
-        }
-
-        private void GoToGroupPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
-
-        private void Login(string username, string password)
-        {
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).SendKeys(username);
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).SendKeys(password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-
-        private void OpenHomePage()
-        {
-            // открытие страницы addressbook
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
-        }
-
+      
         private bool IsElementPresent(By by)
         {
             try
