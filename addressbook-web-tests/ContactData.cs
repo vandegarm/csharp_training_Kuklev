@@ -12,6 +12,7 @@ namespace addressbook_web_tests
         private string middlename;
         private string lastname;
         private string nickname;
+        //private string testphoto;
         private string title;
         private string company;
         private string address;
@@ -19,9 +20,10 @@ namespace addressbook_web_tests
         private string mobile;
         private string work;
         private string fax;
-        private string email1;
+        private string email;
         private string email2;
         private string email3;
+        private string homepage;
         private string birthyear;
         private string address2;
         private string phone2;
@@ -35,7 +37,7 @@ namespace addressbook_web_tests
 
         }
 
-        public ContactData(string firstname, string middlename, string lastname, string nickname, string title, string company, string address, string home, string mobile, string work, string fax, string email1, string email2, string email3, string birthyear, string address2, string phone2, string notes)
+        public ContactData(string firstname, string middlename, string lastname, string nickname, string title, string company, string address, string home, string mobile, string work, string fax, string email, string email2, string email3, string homepage, string birthyear, string address2, string phone2, string notes)
         {
             this.firstname = firstname;
             this.middlename = middlename;
@@ -48,9 +50,10 @@ namespace addressbook_web_tests
             this.mobile = mobile;
             this.work = work;
             this.fax = fax;
-            this.email1 = email1;
+            this.email = email;
             this.email2 = email2;
             this.email3 = email3;
+            this.homepage = homepage;
             this.birthyear = birthyear;
             this.address2 = address2;
             this.phone2 = phone2;
@@ -68,7 +71,7 @@ namespace addressbook_web_tests
         public string Mobile { get => mobile; set => mobile = value; }
         public string Work { get => work; set => work = value; }
         public string Fax { get => fax; set => fax = value; }
-        public string Email1 { get => email1; set => email1 = value; }
+        public string Email { get => email; set => email = value; }
         public string Email2 { get => email2; set => email2 = value; }
         public string Email3 { get => email3; set => email3 = value; }
         public string Homepage { get => homepage; set => homepage = value; }
@@ -76,5 +79,6 @@ namespace addressbook_web_tests
         public string Address2 { get => address2; set => address2 = value; }
         public string Phone2 { get => phone2; set => phone2 = value; }
         public string Notes { get => notes; set => notes = value; }
+        //public string Testphoto { get => testphoto; set => testphoto = value; }
     }
 }
