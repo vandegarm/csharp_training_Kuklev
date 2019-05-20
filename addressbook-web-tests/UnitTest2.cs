@@ -42,13 +42,17 @@ namespace addressbook_web_tests
         [Test]
         public void TheUntitledTestCaseTest()
         {
+            // открытие страницы addressbook
             driver.Navigate().GoToUrl(baseURL);
+            //логин пароль
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).SendKeys("admin");
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            // переход к созданию новой группы
             driver.FindElement(By.LinkText("groups")).Click();
+            // создание новой группы
             driver.FindElement(By.Name("new")).Click();
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
@@ -56,8 +60,7 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("submit")).Click();
             driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
+
         }
         private bool IsElementPresent(By by)
         {
