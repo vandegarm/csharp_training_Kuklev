@@ -53,19 +53,29 @@ namespace addressbook_web_tests
 
         }
 
-        private void Logout()
+        private void OpenHomePage()
         {
-            driver.FindElement(By.LinkText("Logout")).Click();
+            // открытие страницы addressbook
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
         }
 
-        private void ReturnToGroupPage()
+        private void Login(string username, string password)
+        {
+            driver.FindElement(By.Name("user")).Click();
+            driver.FindElement(By.Name("user")).SendKeys(username);
+            driver.FindElement(By.Name("pass")).Click();
+            driver.FindElement(By.Name("pass")).SendKeys(password);
+            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+        }
+
+        private void GoToGroupPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void SubmitGroupCreation()
+        private void NewGroupCreation()
         {
-            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.Name("new")).Click();
         }
 
         private void EnterFieldValues(string name, string header, string footer)
@@ -81,29 +91,19 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("group_footer")).SendKeys(footer);
         }
 
-        private void NewGroupCreation()
+        private void SubmitGroupCreation()
         {
-            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void GoToGroupPage()
+        private void ReturnToGroupPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login(string username, string password)
+        private void Logout()
         {
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).SendKeys(username);
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).SendKeys(password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-
-        private void OpenHomePage()
-        {
-            // открытие страницы addressbook
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
+            driver.FindElement(By.LinkText("Logout")).Click();
         }
 
         private bool IsElementPresent(By by)
