@@ -21,7 +21,7 @@ namespace addressbook_web_tests
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/addressbook/group.php";
+            baseURL = "http://localhost/addressbook";
             verificationErrors = new StringBuilder();
         }
 
@@ -43,7 +43,7 @@ namespace addressbook_web_tests
         public void TheUntitledTestCaseTest()
         {
             // открытие страницы addressbook
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/group.php");
             //логин пароль
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).SendKeys("admin");
@@ -54,11 +54,14 @@ namespace addressbook_web_tests
             driver.FindElement(By.LinkText("groups")).Click();
             // создание новой группы
             driver.FindElement(By.Name("new")).Click();
+            // заполнение полей
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("Lection 1.1/1");
             driver.FindElement(By.Name("submit")).Click();
+            // проверка создания группы
             driver.FindElement(By.LinkText("groups")).Click();
+            // выход из приложения
             driver.FindElement(By.LinkText("Logout")).Click();
 
         }
